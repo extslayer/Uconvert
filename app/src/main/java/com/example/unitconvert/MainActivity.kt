@@ -40,6 +40,13 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        val temp = binding.temp
+        temp.setOnClickListener {
+            val Intent = Intent(this, TempactActivity::class.java)
+            startActivity(Intent)
+
+        }
+
 
     }
 }

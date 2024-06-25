@@ -1,26 +1,19 @@
 package com.example.unitconvert
 
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.unitconvert.databinding.ActivityMainBinding
+import com.example.unitconvert.databinding.ActivityTempactBinding
 import com.example.unitconvert.databinding.ActivityWeightactBinding
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
-import kotlin.math.roundToLong
+import java.util.Locale
 
-class weightact : AppCompatActivity() {
+class TempactActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        val binding: ActivityWeightactBinding by lazy {
-            ActivityWeightactBinding.inflate(layoutInflater)
+        val binding: ActivityTempactBinding by lazy {
+            ActivityTempactBinding.inflate(layoutInflater)
         }
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,11 +23,11 @@ class weightact : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val weightunits = resources.getStringArray(R.array.weightunits)
+
+        val weightunits = resources.getStringArray(R.array.tempunits)
         val arrayadapter = ArrayAdapter(this, R.layout.dropdown_item, weightunits)
         binding.fromunit.setAdapter(arrayadapter)
         binding.tounit.setAdapter(arrayadapter)
-
 
         val inttxt = binding.inttxt
         val fromunit = binding.fromunit
@@ -42,15 +35,14 @@ class weightact : AppCompatActivity() {
         val outtxt = binding.outtxt
 
 
-
         val convertbutton = binding.convertbutton
         convertbutton.setOnClickListener {
-            val out = weightcal(
+            val out = tempcal(
                 inttxt.text.toString().toInt(),
                 fromunit.text.toString(),
                 tounit.text.toString()
             )
-            val gg = ("%.4f".format(out))
+            val gg = ("%.2f".format(out))
             outtxt.text = ("$gg"+" ${tounit.text.toString()}")
 
         }
@@ -58,46 +50,46 @@ class weightact : AppCompatActivity() {
 
     }
 
-    private fun weightcal(int: Int, s: String, s1: String): Double {
+    private fun tempcal(int: Int, s: String, s1: String): Double {
         var a = 00.00
         when(s){
-            "Kg"->{
+            "Celsius"->{
                 when(s1){
-                    "Pounds"->{
-                        a = int * 2.20462
+                    "Celsius"->{
+                        a = int + 00.00
                     }
-                    "g"->{
-                        a = int * 1000.0
+                    "Fahrenheit"->{
+                        a = (int * 1.8) + 32
                     }
-                    "Kg"->{
-                        a = int+ 00.00
+                    "Kelvin"->{
+                        a = int + 273.15
                     }
                 }
             }
-            "g"->{
+            "Fahrenheit"->{
                 when(s1){
-                    "Pounds"->{
-                        a = int * 0.00220462
+                    "Celsius"->{
+                        a = (int-32) * 0.55
                     }
-                    "g"->{
+                    "Fahrenheit"->{
                         a = int+ 00.00
                     }
-                    "Kg"->{
-                        a = int * 0.001
+                    "Kelvin"->{
+                        a = ((int-32) * 0.55) + 273.15
                     }
                 }
 
             }
-            "Pounds"->{
+            "Kelvin"->{
                 when(s1){
-                    "Pounds"->{
+                    "Celsius"->{
+                        a = int - 273.15
+                    }
+                    "Fahrenheit"->{
+                        a = ((int - 273.15) * 1.8) + 32
+                    }
+                    "Kelvin"->{
                         a = int + 00.00
-                    }
-                    "g"->{
-                        a = int * 453.592
-                    }
-                    "Kg"->{
-                        a = int * 0.453592
                     }
                 }
 
@@ -106,6 +98,4 @@ class weightact : AppCompatActivity() {
         return a
 
     }
-
-
 }
