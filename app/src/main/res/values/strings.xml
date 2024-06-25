@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">unitconvert</string>
+    <string name="app_name">Uconvert</string>
 
     <string-array name="weightunits">
         <item>Kg</item>
