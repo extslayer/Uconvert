@@ -58,7 +58,7 @@ class weightact : AppCompatActivity() {
 
     }
 
-    private fun weightcal(int: Int, s: String, s1: String): Double {
+    private fun weightcal(int: Int=1, s: String="Kg", s1: String="Kg"): Double {
         var a = 00.00
         when(s){
             "Kg"->{

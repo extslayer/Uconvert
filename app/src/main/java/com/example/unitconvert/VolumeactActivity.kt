@@ -44,7 +44,7 @@ class VolumeactActivity : AppCompatActivity() {
         }
     }
 
-    private fun volcal(int: Int, s: String, s1: String): Double {
+    private fun volcal(int: Int=1, s: String="Cubic m", s1: String="Cubic m"): Double {
         var a = 00.00
         when(s){
             "Cubic m"->{

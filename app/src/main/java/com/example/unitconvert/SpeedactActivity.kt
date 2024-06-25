@@ -40,7 +40,7 @@ class SpeedactActivity : AppCompatActivity() {
         }
     }
 
-    private fun speedcal(int: Int, s: String, s1: String): Double {
+    private fun speedcal(int: Int=1, s: String="Meter/Sec", s1: String="Meter/Sec"): Double {
         var a = 00.00
         when(s){
             "Meter/Sec"->{

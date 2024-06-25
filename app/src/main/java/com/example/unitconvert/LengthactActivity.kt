@@ -40,7 +40,7 @@ class LengthactActivity : AppCompatActivity() {
         }
     }
 
-    private fun lencal(int: Int, s: String, s1: String): Double {
+    private fun lencal(int: Int=1, s: String="Km", s1: String="Km"): Double {
         var a = 00.00
         when(s){
             "Km"->{

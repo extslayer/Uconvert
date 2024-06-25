@@ -50,7 +50,7 @@ class TempactActivity : AppCompatActivity() {
 
     }
 
-    private fun tempcal(int: Int, s: String, s1: String): Double {
+    private fun tempcal(int: Int=1, s: String="Celsius", s1: String="Celsius"): Double {
         var a = 00.00
         when(s){
             "Celsius"->{
