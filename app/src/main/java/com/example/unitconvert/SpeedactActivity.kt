@@ -1,26 +1,17 @@
 package com.example.unitconvert
 
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.unitconvert.databinding.ActivityMainBinding
-import com.example.unitconvert.databinding.ActivityWeightactBinding
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
-import kotlin.math.roundToLong
+import com.example.unitconvert.databinding.ActivitySpeedactBinding
 
-class weightact : AppCompatActivity() {
+class SpeedactActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        val binding: ActivityWeightactBinding by lazy {
-            ActivityWeightactBinding.inflate(layoutInflater)
+        val binding: ActivitySpeedactBinding by lazy {
+            ActivitySpeedactBinding.inflate(layoutInflater)
         }
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,74 +21,65 @@ class weightact : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val weightunits = resources.getStringArray(R.array.weightunits)
-        val arrayadapter = ArrayAdapter(this, R.layout.dropdown_item, weightunits)
+
+        val speedunits = resources.getStringArray(R.array.speedunits)
+        val arrayadapter = ArrayAdapter(this, R.layout.dropdown_item, speedunits)
         binding.fromunit.setAdapter(arrayadapter)
         binding.tounit.setAdapter(arrayadapter)
-
 
         val inttxt = binding.inttxt
         val fromunit = binding.fromunit
         val tounit = binding.tounit
         val outtxt = binding.outtxt
 
-
-
         val convertbutton = binding.convertbutton
         convertbutton.setOnClickListener {
-            val out = weightcal(
-                inttxt.text.toString().toInt(),
-                fromunit.text.toString(),
-                tounit.text.toString()
-            )
+            val out = speedcal(inttxt.text.toString().toInt(),fromunit.text.toString(),tounit.text.toString())
             val gg = ("%.2f".format(out))
             outtxt.text = ("$gg"+" ${tounit.text.toString()}")
-
         }
-
-
     }
 
-    private fun weightcal(int: Int, s: String, s1: String): Double {
+    private fun speedcal(int: Int, s: String, s1: String): Double {
         var a = 00.00
         when(s){
-            "Kg"->{
+            "Meter/Sec"->{
                 when(s1){
-                    "Pounds"->{
-                        a = int * 2.20462
+                    "Meter/Sec"->{
+                        a = int + 00.00
                     }
-                    "g"->{
-                        a = int * 1000.0
+                    "Km/Hr"->{
+                        a = int * 3.6
                     }
-                    "Kg"->{
-                        a = int+ 00.00
+                    "Miles/Hr"->{
+                        a = int * 2.23694
                     }
                 }
             }
-            "g"->{
+            "Km/Hr"->{
                 when(s1){
-                    "Pounds"->{
-                        a = int * 0.00220462
+                    "Meter/Sec"->{
+                        a = int * 0.277778
                     }
-                    "g"->{
+                    "Km/Hr"->{
                         a = int+ 00.00
                     }
-                    "Kg"->{
-                        a = int * 0.001
+                    "Miles/Hr"->{
+                        a = int * 0.621371
                     }
                 }
 
             }
-            "Pounds"->{
+            "Miles/Hr"->{
                 when(s1){
-                    "Pounds"->{
+                    "Meter/Sec"->{
+                        a = int * 0.44704
+                    }
+                    "Km/Hr"->{
+                        a = int * 1.60934
+                    }
+                    "Miles/Hr"->{
                         a = int + 00.00
-                    }
-                    "g"->{
-                        a = int * 453.592
-                    }
-                    "Kg"->{
-                        a = int * 0.453592
                     }
                 }
 
@@ -106,6 +88,4 @@ class weightact : AppCompatActivity() {
         return a
 
     }
-
-
 }

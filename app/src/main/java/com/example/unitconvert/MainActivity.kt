@@ -28,10 +28,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-       /* val but = findViewById<ImageView>(R.id.weight)
-        but.setOnClickListener {
-            Toast.makeText(this, "lollll", Toast.LENGTH_SHORT).show()
-        }*/
+
 
         val weight = binding.weight
         weight.setOnClickListener {
@@ -43,6 +40,34 @@ class MainActivity : AppCompatActivity() {
         val temp = binding.temp
         temp.setOnClickListener {
             val Intent = Intent(this, TempactActivity::class.java)
+            startActivity(Intent)
+
+        }
+
+        val length = binding.length
+        length.setOnClickListener {
+            val Intent = Intent(this, LengthactActivity::class.java)
+            startActivity(Intent)
+
+        }
+
+        val speed = binding.speed
+        speed.setOnClickListener {
+            val Intent = Intent(this, SpeedactActivity::class.java)
+            startActivity(Intent)
+
+        }
+
+        val vol = binding.volume
+        vol.setOnClickListener {
+            val Intent = Intent(this, VolumeactActivity::class.java)
+            startActivity(Intent)
+
+        }
+
+        val pressure = binding.pressure
+        pressure.setOnClickListener {
+            val Intent = Intent(this, PressureactActivity::class.java)
             startActivity(Intent)
 
         }
